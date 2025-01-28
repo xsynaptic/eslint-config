@@ -1,6 +1,6 @@
 {
   "name": "@xsynaptic/eslint-config",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A common ESLint config factory for TypeScript and Astro projects",
   "type": "module",
   "license": "MIT",

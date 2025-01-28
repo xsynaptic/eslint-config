@@ -3,7 +3,9 @@ import astroPlugin from "eslint-plugin-astro";
 import simpleImportSortPlugin from "eslint-plugin-simple-import-sort";
 import unicornPlugin from "eslint-plugin-unicorn";
 import globals from "globals";
-import tseslint, { ConfigArray } from "typescript-eslint";
+import tseslint from "typescript-eslint";
+
+import type { ConfigArray } from "typescript-eslint";
 
 export function getConfig(
   customConfig?: ConfigArray,

@@ -1,12 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
+    "allowJs": true,
+    "checkJs": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "isolatedModules": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "verbatimModuleSyntax": true
   },
   "include": [
     "**/*.ts"
