@@ -1,20 +1,18 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "baseUrl": ".",
-    "allowJs": true,
-    "checkJs": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "verbatimModuleSyntax": true
-  },
-  "include": [
-    "**/*.ts"
-  ]
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"baseUrl": ".",
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"strictNullChecks": true,
+		"verbatimModuleSyntax": true
+	},
+	"include": ["**/*.ts", "prettier.config.mjs"]
 }
