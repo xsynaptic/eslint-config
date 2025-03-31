@@ -50,6 +50,7 @@ export function getConfig(
 						varsIgnorePattern: "^_",
 					},
 				],
+				"@typescript-eslint/prefer-nullish-coalescing": "off",
 			},
 		},
 		unicornPlugin.configs["flat/recommended"],
