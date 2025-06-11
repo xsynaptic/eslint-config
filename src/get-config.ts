@@ -53,7 +53,7 @@ export function getConfig(
 				"@typescript-eslint/prefer-nullish-coalescing": "off",
 			},
 		},
-		unicornPlugin.configs["flat/recommended"],
+		unicornPlugin.configs.recommended,
 		{
 			rules: {
 				"unicorn/filename-case": "warn",
@@ -93,13 +93,12 @@ export function getConfig(
 	 * @reference - https://github.com/Princesseuh/erika.florist/blob/main/eslint.config.js
 	 */
 	const astroConfig = [
-		...astroPlugin.configs.recommended,
+		...astroPlugin.configs["flat/recommended"],
 		...astroPlugin.configs["jsx-a11y-strict"],
-
-		// Remove some safety rules around `any` for various reasons
-		// Astro.props isn't typed correctly in some contexts, so a bunch of things ends up being `any`
 		{
 			files: ["**/*.astro"],
+			// Remove some safety rules around `any` for various reasons
+			// Astro.props isn't typed correctly in some contexts, so a bunch of things ends up being `any`
 			rules: {
 				"@typescript-eslint/no-unsafe-argument": "off",
 				"@typescript-eslint/no-unsafe-assignment": "off",
@@ -110,9 +109,8 @@ export function getConfig(
 		},
 
 		// Disable typed rules for scripts inside Astro files
-		// https://github.com/ota-meshi/eslint-plugin-astro/issues/240
 		{
-			files: ["**/*.astro/*.ts"],
+			files: ["**/*.astro/*.ts", "*.astro/*.ts"],
 			languageOptions: {
 				parserOptions: {
 					// eslint-disable-next-line unicorn/no-null
