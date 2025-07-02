@@ -1,7 +1,6 @@
 import type { ConfigArray } from "typescript-eslint";
 
 import eslint from "@eslint/js";
-import astroPlugin from "eslint-plugin-astro";
 import perfectionist from "eslint-plugin-perfectionist";
 import unicornPlugin from "eslint-plugin-unicorn";
 import globals from "globals";
@@ -11,11 +10,10 @@ export function getConfig(
 	customConfig?: ConfigArray,
 	options?: {
 		customGlobals?: Record<string, "readonly" | "writeable">;
-		withAstro?: boolean;
+		parserOptions?: NonNullable<ConfigArray[number]["languageOptions"]>["parserOptions"];
 	},
 ) {
 	const customGlobals = options?.customGlobals ?? {};
-	const withAstro = options?.withAstro ?? false;
 
 	const baseConfig = [
 		eslint.configs.recommended,
@@ -29,8 +27,8 @@ export function getConfig(
 					...customGlobals,
 				},
 				parser: tseslint.parser,
-				parserOptions: {
-					// projectService: true, // Astro ecosystem tools can't use this yet; 2024Q4
+				parserOptions: options?.parserOptions ?? {
+					projectService: true,
 					project: ["./tsconfig.json"],
 				},
 			},
@@ -88,42 +86,5 @@ export function getConfig(
 		},
 	] satisfies ConfigArray;
 
-	/**
-	 * Astro support; with some help from...
-	 * @reference - https://github.com/Princesseuh/erika.florist/blob/main/eslint.config.js
-	 */
-	const astroConfig = [
-		...astroPlugin.configs["flat/recommended"],
-		...astroPlugin.configs["jsx-a11y-strict"],
-		{
-			files: ["**/*.astro"],
-			// Remove some safety rules around `any` for various reasons
-			// Astro.props isn't typed correctly in some contexts, so a bunch of things ends up being `any`
-			rules: {
-				"@typescript-eslint/no-unsafe-argument": "off",
-				"@typescript-eslint/no-unsafe-assignment": "off",
-				"@typescript-eslint/no-unsafe-call": "off",
-				"@typescript-eslint/no-unsafe-member-access": "off",
-				"@typescript-eslint/no-unsafe-return": "off",
-			},
-		},
-
-		// Disable typed rules for scripts inside Astro files
-		{
-			files: ["**/*.astro/*.ts", "*.astro/*.ts"],
-			languageOptions: {
-				parserOptions: {
-					// eslint-disable-next-line unicorn/no-null
-					project: null,
-				},
-			},
-			...tseslint.configs.disableTypeChecked,
-		},
-	] satisfies ConfigArray;
-
-	return tseslint.config([
-		...baseConfig,
-		...(withAstro ? astroConfig : []),
-		...(customConfig ?? []),
-	]);
+	return tseslint.config([...baseConfig, ...(customConfig ?? [])]);
 }
