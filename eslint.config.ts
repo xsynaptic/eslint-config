@@ -1,3 +1,3 @@
-import { getConfig } from "./src/get-config";
+import { getConfig } from "./src";
 
 export default getConfig();

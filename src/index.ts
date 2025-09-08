@@ -1,5 +1,6 @@
-import type { ConfigArray } from "typescript-eslint";
+import type { Config, ConfigWithExtends, ConfigWithExtendsArray } from "@eslint/config-helpers";
 
+import { defineConfig } from "@eslint/config-helpers";
 import eslint from "@eslint/js";
 import perfectionist from "eslint-plugin-perfectionist";
 import unicornPlugin from "eslint-plugin-unicorn";
@@ -7,10 +8,10 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export function getConfig(
-	customConfig?: ConfigArray,
+	customConfig?: ConfigWithExtendsArray,
 	options?: {
 		customGlobals?: Record<string, "readonly" | "writeable">;
-		parserOptions?: NonNullable<ConfigArray[number]["languageOptions"]>["parserOptions"];
+		parserOptions?: NonNullable<Config["languageOptions"]>["parserOptions"];
 	},
 ) {
 	const customGlobals = options?.customGlobals ?? {};
@@ -84,7 +85,7 @@ export function getConfig(
 				"perfectionist/sort-union-types": "off",
 			},
 		},
-	] satisfies ConfigArray;
+	] as Array<ConfigWithExtends>; // Note: this is a workaround for a type incompatibility
 
-	return tseslint.config([...baseConfig, ...(customConfig ?? [])]);
+	return defineConfig(...baseConfig, ...(customConfig ?? []));
 }
