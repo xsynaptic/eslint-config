@@ -1,16 +1,20 @@
 {
 	"name": "@xsynaptic/eslint-config",
-	"version": "3.0.1",
+	"version": "3.0.3",
 	"description": "A common ESLint config factory for TypeScript projects",
 	"type": "module",
 	"license": "MIT",
-	"main": "./src/index.ts",
+	"main": "./dist/index.js",
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		}
 	},
+	"files": [
+		"dist",
+		"src"
+	],
 	"scripts": {
 		"build": "tsdown",
 		"build-tsc": "tsc --build",
@@ -19,10 +23,7 @@
 		"check-types": "tsc --noEmit --extendedDiagnostics"
 	},
 	"dependencies": {
-		"@eslint/js": "^9.35.0",
 		"eslint": "^9.35.0",
-		"eslint-plugin-import": "^2.32.0",
-		"eslint-plugin-jsx-a11y": "^6.10.2",
 		"eslint-plugin-perfectionist": "^4.15.0",
 		"eslint-plugin-unicorn": "^61.0.2",
 		"globals": "^16.4.0",
@@ -30,6 +31,7 @@
 	},
 	"devDependencies": {
 		"@eslint/config-helpers": "^0.3.1",
+		"@eslint/js": "^9.35.0",
 		"jiti": "^2.5.1",
 		"prettier": "^3.6.2",
 		"tsdown": "^0.15.1",
