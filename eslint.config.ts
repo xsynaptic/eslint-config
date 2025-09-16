@@ -1,3 +1,7 @@
 import { getConfig } from "./src";
 
-export default getConfig();
+export default getConfig([
+	{
+		ignores: ["dist/**"],
+	},
+]);
