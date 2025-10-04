@@ -13,7 +13,7 @@ export function getConfig(
 		customGlobals?: Record<string, "readonly" | "writeable">;
 		parserOptions?: NonNullable<Config["languageOptions"]>["parserOptions"];
 	},
-) {
+): ConfigWithExtendsArray {
 	const customGlobals = options?.customGlobals ?? {};
 
 	const baseConfig = [
