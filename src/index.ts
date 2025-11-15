@@ -30,7 +30,6 @@ export function getConfig(
 				parser: tseslint.parser,
 				parserOptions: options?.parserOptions ?? {
 					projectService: true,
-					project: ["./tsconfig.json"],
 				},
 			},
 			plugins: {
